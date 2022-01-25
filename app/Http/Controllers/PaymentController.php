@@ -20,6 +20,10 @@ class PaymentController extends Controller
                 'payment_method_types' => ['card'],
                 'amount' => $request->amount * 100,
                 'currency' => 'eur',
+                'transfer_data' => [
+                    'amount' => ($request->amount * 80 / 100) * 100,
+                    'destination' => 'acct_1KJDBT2E7vLTkQan',
+                ],
             ]);
 
             return json_encode(array('client_secret' => $charge->client_secret, 'id' => $charge->id, 'method' => $charge->payment_method_types));
